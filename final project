@@ -89,25 +89,3 @@ variable2 = input("Which state would you like to compare to? :")
   elif variable2 == 'Florida' and variable1 == 'California'
     st.ttest_1samp(ca_corona_mean,fl_corona_mean)
 
-recent_ma_data = input("How many new cases are there in Massachusetts? :")
-record['recent_ma_data'] = int(recent_ma_data)
-record[massachusettsData] = int(massachusettsData.mean())
-st.ttest_1samp(recent_ma_data,massachusettsData)
-
-recent_wa_data = input("How many new cases are there in Washington? :")
-record['recent_wa_data'] = int(recent_wa_data)
-H0 : recent_wa_data = avg(washingtonData)
-H1 : recent_wa_data < avg(washingtonData)
-stats.ttest_ind(recent_wa_data,avg(washingtonData))
-
-recent_ny_data = input("How many new cases are there in New York? :")
-record['recent_ny_data'] = int(recent_ny_data)
-H0 : recent_ny_data = avg(newyorkData)
-H1 : recent_ny_data < avg(newyorkData)
-stats.ttest_ind(recent_ny_data,avg(newyorkData))
-
-recent_fl_data = input("How many new cases are there in Florida? :")
-record['recent_fl_data'] = int(recent_fl_data)
-H0 : recent_fl_data = avg(floridaData)
-H1 : recent_fl_data < avg(floridaData)
-stats.ttest_ind(recent_fl_data,avg(floridaData))
