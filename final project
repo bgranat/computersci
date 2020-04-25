@@ -1,0 +1,113 @@
+import numpy as np
+import pandas as pd
+import scipy.stats as stats
+import math
+
+californiaData = {'MARCH 4': 6, 'MARCH 5': 47, 'MARCH 6': 7, 'MARCH 7': 9,
+'MARCH 8': 19, 'MARCH 9': 26, 'MARCH 10': 19, 'MARCH 11': 24, 'MARCH 12': 20,
+'MARCH 13': 21, 'MARCH 14': 49, 'MARCH 15': 88, 'MARCH 16': 57, 'MARCH 17': 80,
+'MARCH 18': 126, 'MARCH 19': 77, 'MARCH 20': 331, 'MARCH 21': 218,
+'MARCH 22': 244, 'MARCH 23': 265, 'MARCH 24': 369, 'MARCH 25': 433,
+'MARCH 26': 471, 'MARCH 27': 795, 'MARCH 28': 842, 'MARCH 29': 0,
+'MARCH 30': 1120, 'MARCH 31': 1169, 'APRIL 1': 1223, 'ARPIL 2': 1036,
+'APRIL 3': 1510, 'APRIL 4': 1325, 'APRIL 5': 1412, 'APRIL 6': 898,
+'APRIL 7': 1529, 'APRIL 8': 1092, 'APRIL 9': 1352, 'APRIL 10': 1163,
+'APRIL 11': 1143, 'APRIL 12': 1179, 'APRIL 13': 554, 'APRIL 14': 990,
+'APRIL 16': 1086, 'APRIL 17': 1758, 'APRIL 18': 1346, 'APRIL 19': 1435,
+'APRIL 20': 1370, 'APRIL 21': 645, 'APRIL 22': 2283, 'APRIL 23': 2135,
+'APRIL 24': 1973
+    }
+washingtonData = {'FEBRUARY 28': 9, 'FEBRUARY 29': 9, 'MARCH 1': 12,
+'MARCH 2': 4, 'MARCH 3': 24, 'MARCH 4': 18, 'MARCH 5': 21, 'MARCH 6': 53,
+'MARCH 7': 32,'MARCH 8': 67, 'MARCH 9': 100, 'MARCH 10': 48, 'MARCH 11': 84,
+'MARCH 12': 69,'MARCH 13': 151, 'MARCH 14': 104, 'MARCH 15': 132,
+'MARCH 16': 128, 'MARCH 17': 173, 'MARCH 18': 174, 'MARCH 19': 149,
+'MARCH 20': 240, 'MARCH 21': 237, 'MARCH 22': 241, 'MARCH 23': 211,
+'MARCH 24': 379, 'MARCH 25': 458, 'MARCH 26': 475, 'MARCH 27': 479,
+'MARCH 28': 432, 'MARCH 29': 382, 'MARCH 30': 465, 'MARCH 31': 460,
+'APRIL 8': 3158, 'ARPIL 9': 278, 'APRIL 10': 448, 'APRIL 11': 221,
+'APRIL 12': 235, 'APRIL 13': 189, 'APRIL 14': 202, 'APRIL 16': 311,
+'APRIL 17': 243, 'APRIL 18': 330, 'APRIL 19': 212, 'APRIL 20': 260,
+'APRIL 21': 200, 'APRIL 22': 205, 'APRIL 23': 241
+    }
+massachusettsData = {}
+newyorkData = {}
+floridaData = {}
+
+
+rona_data_state = {'CA': californiaData, 'MA': massachusettsData,
+'WA': washingtonData, 'NY': newyorkData, 'FL': floridaData}
+
+
+recent_ca_data = int(input("How many new cases are there in California? :"))
+date = input("What is the date today? Please type the date w/o the year in the
+form - APRIL 24 :""))
+new_data = {date: recent_ca_data}
+californiaData.update(new_data)
+californiaData_list = list(californiaData.values())
+final_californiaData_list = [num/39500000 for num in californiaData_list]
+
+
+recent_wa_data = int(input("How many new cases are there in Washington? :"))
+date2 = input("What is the date today? Please type the date w/o the year in the
+form - APRIL 24 :""))
+new_data2 = {date2: recent_wa_data}
+washingtonData.update(new_data2)
+washingtonData_list = list(washingtonData.values())
+final_washingtonData_list = [num/7615000 for num in washingtonData_list]
+
+
+variable1 = input("Which state would you like to look at? :")
+  if variable1 == 'California'
+    california_sample = stats.poisson.rvs(loc=0,mu=1.8563415239513528e-05,size=49)
+    print(f"The daily average new coronavirus cases per person in California is: california_sample.mean()")
+  elif variable1 == 'Washington'
+    washington_sample = stats.poisson.rvs(loc=4,mu=3.44459779972396e-05,size=49)
+    print(f"The daily average new coronavirus cases per person in Washington is: washington_sample.mean()")
+  elif variable1 == 'New York'
+    print(f"The daily average new coronavirus cases per person in New York is: {newyork_data_mean}")
+  elif variable1 == 'Massachusetts'
+    print(f"The daily average new coronavirus cases per person in Massachusetts is: {massachusetts_data_mean}")
+  elif variable1 == 'Florida'
+    print(f"The daily average new coronavirus cases per person in Florida is: {florida_data_mean}")
+
+variable2 = input("Which state would you like to compare to? :")
+  if variable2 == 'Washington' and variable1 == 'California'
+    _,p_value=stats.ttest_1samp(a=california_sample,b=washington_sample,equal_var=false)
+    if p_value < 0.05:
+      print("Based on the data, we can conclude that there is a definetly a difference in California's coronavirus day-by-day trend when compared to Washington.")
+    else:
+      print("Based on the data, we cannot conclude that there is a significant difference between California's day-by-day coronavirus trend and Washington's trend.")
+  elif variable2 == 'New York' and variable1 == 'California'
+    _,p_value=stats.ttest_1samp(a=california_sample,b=newyork_sample,equal_var=false)
+    if p_value < 0.05:
+      print("Based on the data, we can conclude that there is a definetly a difference in California's coronavirus day-by-day trend when compared to Washington.")
+    else:
+      print("Based on the data, we cannot conclude that there is a significant difference between California's day-by-day coronavirus trend and Washington's trend.")
+  elif variable2 == 'Massachusetts' and variable1 == 'California'
+    st.ttest_1samp(ca_corona_mean,ma_corona_mean)
+  elif variable2 == 'Florida' and variable1 == 'California'
+    st.ttest_1samp(ca_corona_mean,fl_corona_mean)
+
+recent_ma_data = input("How many new cases are there in Massachusetts? :")
+record['recent_ma_data'] = int(recent_ma_data)
+record[massachusettsData] = int(massachusettsData.mean())
+st.ttest_1samp(recent_ma_data,massachusettsData)
+
+recent_wa_data = input("How many new cases are there in Washington? :")
+record['recent_wa_data'] = int(recent_wa_data)
+H0 : recent_wa_data = avg(washingtonData)
+H1 : recent_wa_data < avg(washingtonData)
+stats.ttest_ind(recent_wa_data,avg(washingtonData))
+
+recent_ny_data = input("How many new cases are there in New York? :")
+record['recent_ny_data'] = int(recent_ny_data)
+H0 : recent_ny_data = avg(newyorkData)
+H1 : recent_ny_data < avg(newyorkData)
+stats.ttest_ind(recent_ny_data,avg(newyorkData))
+
+recent_fl_data = input("How many new cases are there in Florida? :")
+record['recent_fl_data'] = int(recent_fl_data)
+H0 : recent_fl_data = avg(floridaData)
+H1 : recent_fl_data < avg(floridaData)
+stats.ttest_ind(recent_fl_data,avg(floridaData))
