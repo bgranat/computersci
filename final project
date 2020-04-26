@@ -17,6 +17,7 @@ californiaData = {'MARCH 4': 6, 'MARCH 5': 47, 'MARCH 6': 7, 'MARCH 7': 9,
 'APRIL 20': 1370, 'APRIL 21': 645, 'APRIL 22': 2283, 'APRIL 23': 2135,
 'APRIL 24': 1973
     }
+
 washingtonData = {'FEBRUARY 28': 9, 'FEBRUARY 29': 9, 'MARCH 1': 12,
 'MARCH 2': 4, 'MARCH 3': 24, 'MARCH 4': 18, 'MARCH 5': 21, 'MARCH 6': 53,
 'MARCH 7': 32,'MARCH 8': 67, 'MARCH 9': 100, 'MARCH 10': 48, 'MARCH 11': 84,
@@ -30,127 +31,79 @@ washingtonData = {'FEBRUARY 28': 9, 'FEBRUARY 29': 9, 'MARCH 1': 12,
 'APRIL 17': 243, 'APRIL 18': 330, 'APRIL 19': 212, 'APRIL 20': 260,
 'APRIL 21': 200, 'APRIL 22': 205, 'APRIL 23': 241
     }
-massachusettsData = {}
+massachusettsData = {'MARCH 2': 2, 'MARCH 3': 0, 'MARCH 4': 0, 'MARCH 5': 1, 
+'MARCH 6': 5,'MARCH 7': 5,'MARCH 8': 15, 'MARCH 9': 13, 'MARCH 10': 51, 
+'MARCH 11': 3,'MARCH 12': 13,'MARCH 13': 15, 'MARCH 14': 15, 'MARCH 15': 26,
+'MARCH 16': 128, 'MARCH 17': 173, 'MARCH 18': 174, 'MARCH 19': 149,
+'MARCH 20': 33, 'MARCH 21': 22, 'MARCH 22': 38, 'MARCH 23': 72,
+'MARCH 24': 85, 'MARCH 25': 112, 'MARCH 26': 121, 'MARCH 27': 131,
+'MARCH 28': 382, 'MARCH 29': 679, 'MARCH 30': 579, 'MARCH 31': 823,'MARCH 29': 1017,
+'MARCH 30': 698, 'MARCH 31': 797, 'APRIL 1': 868, 'ARPIL 12': 18,854,
+'APRIL 13': 1392, 'APRIL 14': 1296, 'APRIL 15': 1755, 'APRIL 16': 2263,
+'APRIL 17': 2221, 'APRIL 18': 1970, 'APRIL 19': 1705, 'APRIL 20': 1566,
+'APRIL 21': 2556, 'APRIL 22': 1745, 'APRIL 23': 3079}
+
 newyorkData = {}
 floridaData = {}
 
 
-rona_data_state = {'CA': californiaData, 'MA': massachusettsData,
-'WA': washingtonData, 'NY': newyorkData, 'FL': floridaData}
-
-
 recent_ca_data = int(input("How many new cases are there in California? :"))
-date = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :""))
+date = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
 new_data = {date: recent_ca_data}
 californiaData.update(new_data)
 californiaData_list = list(californiaData.values())
-final_californiaData_list = [num/39500000 for num in californiaData_list]
 
 
 recent_wa_data = int(input("How many new cases are there in Washington? :"))
-date2 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :""))
+date2 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
 new_data2 = {date2: recent_wa_data}
 washingtonData.update(new_data2)
 washingtonData_list = list(washingtonData.values())
-final_washingtonData_list = [num/7615000 for num in washingtonData_list]
 
 recent_ny_data = int(input("How many new cases are there in New York? :"))
-date3 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :""))
+date3 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
 new_data3 = {date3: recent_ny_data}
 newyorkData.update(new_data3)
 newyorkData_list = list(newyorkData.values())
-final_newyorkData_list = [num/19450000 for num in newyorkData_list]
+
 
 recent_ma_data = int(input("How many new cases are there in Massachusetts? :"))
-date4 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :""))
+date4 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
 new_data4 = {date4: recent_ma_data}
 massachusettsData.update(new_data4)
 massachusettsData_list = list(massachusettsData.values())
-final_massachusettsData_list = [num/6893000 for num in massachusettsData_list]
 
+recent_fl_data = int(input("How many new cases are there in Florida? :"))
+date5 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
+new_data5 = {date5: recent_fl_data}
+floridaData.update(new_data5)
+floridaData_list = list(floridaData.values())
 
-variable1 = input("Which state would you like to look at? :")
-  if variable1 == 'California'
-    california_sample = stats.poisson.rvs(loc=0,mu=1.8563415239513528e-05,size=49)
-    print(f"The daily average new coronavirus cases per person in California is: california_sample.mean()")
-  elif variable1 == 'Washington'
-    washington_sample = stats.poisson.rvs(loc=4,mu=3.44459779972396e-05,size=49)
-    print(f"The daily average new coronavirus cases per person in Washington is: washington_sample.mean()")
-  elif variable1 == 'New York'
-    newyork_sample = stats.poisson.rvs(loc=_,mu=___,size=___)
-    print(f"The daily average new coronavirus cases per person in New York is: {newyork_data_mean}")
-  elif variable1 == 'Massachusetts'
-    massachusetts_sample = stats.poisson.rvs(loc=_,mu=___,size=___)
-    print(f"The daily average new coronavirus cases per person in Massachusetts is: {massachusetts_data_mean}")
-  elif variable1 == 'Florida'
-    florida_sample = stats.poisson.rvs(loc=_,mu=___,size=___)
-    print(f"The daily average new coronavirus cases per person in Florida is: {florida_data_mean}")
-    break
-  else:
-    print("Please choose one out of the five states California, Florida, Massachusetts, New York, Washington")
+rona_data_state = {'CA': californiaData_list, 'MA': massachusettsData_list,
+'WA': washingtonData_list, 'NY': newyorkData_list, 'FL': floridaData_list}
 
-variable2 = input("Which state would you like to compare to? :")
-  if variable2 == 'Washington' and variable1 == 'California'
-    _,p_value=stats.ttest_1samp(a=california_sample,b=washington_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in California's coronavirus day-by-day trend when compared to Washington.")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between California's day-by-day coronavirus trend and Washington's trend.")
-  elif variable2 == 'New York' and variable1 == 'California'
-    _,p_value=stats.ttest_1samp(a=california_sample,b=newyork_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in California's coronavirus day-by-day trend when compared to New York.")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between California's day-by-day coronavirus trend and New York's trend.")
-  elif variable2 == 'Massachusetts' and variable1 == 'California'
-    _,p_value=stats.ttest_1samp(a=california_sample,b=massachusetts_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in California's coronavirus day-by-day trend when compared to New York.")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between California's day-by-day coronavirus trend and New York's trend.")
-  elif variable2 == 'Florida' and variable1 == 'California'
-    _,p_value=stats.ttest_1samp(a=california_sample,b=florida_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in California's coronavirus day-by-day trend when compared to Florida.")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between California's day-by-day coronavirus trend and Florida's trend.")
-  elif variable2 == 'Washington' and variable1 == 'New York'
-    _,p_value=stats.ttest_1samp(a=washington_sample,b=newyork_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in Washington's coronavirus day-by-day trend when compared to New York.")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between Washington's day-by-day coronavirus trend and New York's trend.")
-  elif variable2 == 'Washington' and variable1 == 'Massachusetts'
-    _,p_value=stats.ttest_1samp(a=washington_sample,b=massachusetts_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in Washington's coronavirus day-by-day trend when compared to Massachusetts.")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between Washington's day-by-day coronavirus trend and Massachusetts's trend.")
-  elif variable2 == 'Washington' and variable1 == 'Florida'
-    _,p_value=stats.ttest_1samp(a=washington_sample,b=florida_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in Washington's coronavirus day-by-day trend when compared to Florida.")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between Washington's day-by-day coronavirus trend and Florida's trend.")
-  elif variable2 == 'New York' and variable1 = 'Massachusetts'
-    _,p_value=stats.ttest_1samp(a=newyork_sample,b=massachusetts_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in New York's coronavirus day-by-day trend when compared to Massachusetts")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between New York's day-by-day coronavirus trend and Massachusetts's trend.")
-  elif variable2 == 'New York' and variable1 = 'Florida'
-    _,p_value=stats.ttest_1samp(a=newyork_sample,b=florida_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in New York's coronavirus day-by-day trend when compared to Florida")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between New York's day-by-day coronavirus trend and Florida's trend.")
-  elif variable2 == 'Massachusetts' and variable1 = 'Florida'
-    _,p_value=stats.ttest_1samp(a=massachusetts_sample,b=washington_sample,equal_var=false)
-    if p_value < 0.05:
-      print("Based on the data, we can conclude that there is a definetly a difference in Massachusetts's coronavirus day-by-day trend when compared to Florida")
-    else:
-      print("Based on the data, we cannot conclude that there is a significant difference between Massachusetts's day-by-day coronavirus trend and Florida's trend.")
-      break
-  else:
-    print("Please choose one out of the five states California, Florida, Massachusetts, New York, Washington")
+sampling = {'california_sample': stats.poisson.rvs(loc=min(rona_data_state[CA],mu=sum(rona_data_state[CA])/len(rona_data_state[CA]),size=len(rona_data_state[CA])), 'washington_sample': stats.poisson.rvs(loc=min(rona_data_state[WA]),mu=sum(rona_data_state[WA])/len(rona_data_state[WA]), size=len(rona_data_state[WA])), 'massachusetts_sample': stats.poisson.rvs(loc=min(rona_data_state[MA]),mu=sum(rona_data_state[MA])/len(rona_data_state[MA]), 'florida_sample': stats.poisson.rvs(loc=min(rona_data_state[FL]),mu=sum(rona_data_state[FL])/len(rona_data_state[FL], 'newyork_sample': stats.poisson.rvs(loc=min(rona_data_state[NY]), mu=sum(rona_data_state[NY])/len(rona_data_state[NY]}                              
 
+def hypothesisTest(state1, state2):
+    state1 = input("Which state would you like to look at? :")
+    state2 = input("Which state would you like to compare to? :")
+    t_stat, p_value = stats.ttest_ind(sampling[f"{state1.lower()}_sample"], sampling[f"{state2.lower()}_sample"], equal_var=False)
+    if p_value < 0.05:
+        print(f"the mean for the {state1.lower()} sample is: ")
+        print(sum(sampling[f"{state1.lower()}_sample"])/len(f"{state1.lower()}_sample"]))
+        print(f"the mean for the {state2.lower()} sample is: ")
+        print(sum(sampling[f"{state2.lower()}_sample"])/len(sampling[f"{state2.lower()}_sample"]))
+        print("the pvalue is: ")
+        print(p_value)
+        print(f"Based on the data, we can conclude that there is a definetly a difference in {state1.lower()}'s coronavirus day-by-day trend when compared to {state2.lower()}.")
+    else:
+        print(f"the mean for the {state1.lower()} sample is: ")
+        print(sum(sampling[f"{state1.lower()}_sample"])/len(sampling[f"{state1.lower()}_sample"]))
+        print(f"the mean for the {state2.lower()} sample is: ")
+        print(sum(sampling[f"{state2.lower()}_sample"])/len(sampling[f"{state2.lower()}_sample"]))
+        print("the pvalue is: ")
+        print(p_value)
+        print(f"Based on the data, we cannot conclude that there is a significant difference between {state1.lower()}'s day-by-day coronavirus trend and {state2.lower()}'s trend.")
+
+                                            
+hypothesisTest(state1, state2)
