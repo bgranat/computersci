@@ -38,7 +38,7 @@ massachusettsData = {'MARCH 2': 2, 'MARCH 3': 0, 'MARCH 4': 0, 'MARCH 5': 1,
 'MARCH 20': 33, 'MARCH 21': 22, 'MARCH 22': 38, 'MARCH 23': 72,
 'MARCH 24': 85, 'MARCH 25': 112, 'MARCH 26': 121, 'MARCH 27': 131,
 'MARCH 28': 382, 'MARCH 29': 679, 'MARCH 30': 579, 'MARCH 31': 823,'MARCH 29': 1017,
-'MARCH 30': 698, 'MARCH 31': 797, 'APRIL 1': 868, 'ARPIL 12': 18,854,
+'MARCH 30': 698, 'MARCH 31': 797, 'APRIL 1': 868, 'ARPIL 12': 18854,
 'APRIL 13': 1392, 'APRIL 14': 1296, 'APRIL 15': 1755, 'APRIL 16': 2263,
 'APRIL 17': 2221, 'APRIL 18': 1970, 'APRIL 19': 1705, 'APRIL 20': 1566,
 'APRIL 21': 2556, 'APRIL 22': 1745, 'APRIL 23': 3079}
@@ -82,17 +82,24 @@ floridaData_list = list(floridaData.values())
 rona_data_state = {'CA': californiaData_list, 'MA': massachusettsData_list,
 'WA': washingtonData_list, 'NY': newyorkData_list, 'FL': floridaData_list}
 
-sampling = {'california_sample': stats.poisson.rvs(loc=min(rona_data_state[CA],mu=sum(rona_data_state[CA])/len(rona_data_state[CA]),size=len(rona_data_state[CA])), 'washington_sample': stats.poisson.rvs(loc=min(rona_data_state[WA]),mu=sum(rona_data_state[WA])/len(rona_data_state[WA]), size=len(rona_data_state[WA])), 'massachusetts_sample': stats.poisson.rvs(loc=min(rona_data_state[MA]),mu=sum(rona_data_state[MA])/len(rona_data_state[MA]), 'florida_sample': stats.poisson.rvs(loc=min(rona_data_state[FL]),mu=sum(rona_data_state[FL])/len(rona_data_state[FL], 'newyork_sample': stats.poisson.rvs(loc=min(rona_data_state[NY]), mu=sum(rona_data_state[NY])/len(rona_data_state[NY]}                              
+sampling = {}              
+sampling['california_sample']= stats.poisson.rvs(loc=min(rona_data_state['CA']),mu=sum(rona_data_state['CA'])/len(rona_data_state['CA']),size=len(rona_data_state['CA'])) 
+sampling['washington_sample']= stats.poisson.rvs(loc=min(rona_data_state['WA']),mu=sum(rona_data_state['WA'])/len(rona_data_state['WA']), size=len(rona_data_state['WA'])) 
+sampling['massachusetts_sample']= stats.poisson.rvs(loc=min(rona_data_state['MA']),mu=sum(rona_data_state['MA'])/len(rona_data_state['MA']),size=len(rona_data_state['MA'])) 
+sampling['florida_sample']= stats.poisson.rvs(loc=min(rona_data_state['FL']),mu=sum(rona_data_state['FL'])/len(rona_data_state['FL']),size=len(rona_data_state['FL']))
+sampling['newyork_sample']= stats.poisson.rvs(loc=min(rona_data_state['NY']), mu=sum(rona_data_state['NY'])/len(rona_data_state['NY']),size=len(rona_data_state['NY']))
 
-def hypothesisTest(state1, state2):
+def hypothesisTest():
     state1 = input("Which state would you like to look at? :")
     state2 = input("Which state would you like to compare to? :")
-    t_stat, p_value = stats.ttest_ind(sampling[f"{state1.lower()}_sample"], sampling[f"{state2.lower()}_sample"], equal_var=False)
+    state1_sample = sampling[f"{state1.lower()}_sample"]
+    state2_sample = sampling[f"{state2.lower()}_sample"]
+    t_stat, p_value = stats.ttest_ind(state1_sample, state2_sample, equal_var=False)
     if p_value < 0.05:
-        print(f"the mean for the {state1.lower()} sample is: ")
-        print(sum(sampling[f"{state1.lower()}_sample"])/len(f"{state1.lower()}_sample"]))
-        print(f"the mean for the {state2.lower()} sample is: ")
-        print(sum(sampling[f"{state2.lower()}_sample"])/len(sampling[f"{state2.lower()}_sample"]))
+        print(f"the mean for the state1_sample sample is: ")
+        print(sum(state1_sample)/len(state1_sample))
+        print(f"the mean for the state2_sample sample is: ")
+        print(sum(state2_sample)/len(sampling[f"{state2.lower()}_sample"]))
         print("the pvalue is: ")
         print(p_value)
         print(f"Based on the data, we can conclude that there is a definetly a difference in {state1.lower()}'s coronavirus day-by-day trend when compared to {state2.lower()}.")
@@ -106,4 +113,4 @@ def hypothesisTest(state1, state2):
         print(f"Based on the data, we cannot conclude that there is a significant difference between {state1.lower()}'s day-by-day coronavirus trend and {state2.lower()}'s trend.")
 
                                             
-hypothesisTest(state1, state2)
+hypothesisTest()
