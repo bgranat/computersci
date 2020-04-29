@@ -43,39 +43,48 @@ massachusettsData = {'MARCH 2': 2, 'MARCH 3': 0, 'MARCH 4': 0, 'MARCH 5': 1,
 'APRIL 17': 2221, 'APRIL 18': 1970, 'APRIL 19': 1705, 'APRIL 20': 1566,
 'APRIL 21': 2556, 'APRIL 22': 1745, 'APRIL 23': 3079}
 
-newyorkData = {}
-floridaData = {}
+newyorkData = {'APRIL 1': 7917, 'APRIL 2': 8669, 'APRIL 3': 10482, 'APRIL 4': 10841, 
+'APRIL 5': 8327, 'APRIL 6': 8658, 'APRIL 7': 8147,'APRIL 8': 10480,'APRIL 9': 10621, 'APRIL 10': 10575, 'APRIL 11': 9946 , 
+'APRIL 12': 8236 ,'APRIL 13': 6337,'APRIL 14': 7177, 'APRIL 15': 11571, 'APRIL 16': 8505,
+'APRIL 17': 7358, 'APRIL 18': 7090, 'APRIL 19': 6054, 'APRIL 20': 4726,
+'APRIL 21': 4178, 'APRIL 22': 5526, 'APRIL 23': 6224}
 
+floridaData = {'MARCH 3': 1, 'MARCH 4': 5, 'MARCH 5': 9, 'MARCH 6': 1, 
+'MARCH 7': 9,'MARCH 8': 1,'MARCH 9': 1, 'MARCH 10': 9, 'MARCH 11': 3, 
+'MARCH 12': 18,'MARCH 13': 28,'MARCH 14': 38, 'MARCH 15': 34, 'MARCH 16': 11,
+'MARCH 17': 56, 'MARCH 18': 112, 'MARCH 19': 104, 'MARCH 20': 131,
+'MARCH 21': 200, 'MARCH 22': 244, 'MARCH 23': 220, 'MARCH 24': 240,
+'MARCH 25': 510, 'MARCH 26': 507, 'MARCH 27': 714, 'MARCH 28': 840,
+'MARCH 29': 912, 'MARCH 30': 570, 'MARCH 31': 1037, 'APRIL 1': 1032, 'APRIL 2': 1235, 
+'ARPIL 12': 10887,'APRIL 13': 1124, 'APRIL 14': 609, 'APRIL 15': 891, 'APRIL 16': 821,
+'APRIL 17': 1413, 'APRIL 18': 739, 'APRIL 19': 822, 'APRIL 20': 744,
+'APRIL 21': 811, 'APRIL 22': 707, 'APRIL 23': 1072}
+
+date = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
 
 recent_ca_data = int(input("How many new cases are there in California? :"))
-date = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
 new_data = {date: recent_ca_data}
 californiaData.update(new_data)
 californiaData_list = list(californiaData.values())
 
-
 recent_wa_data = int(input("How many new cases are there in Washington? :"))
-date2 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
-new_data2 = {date2: recent_wa_data}
+new_data2 = {date: recent_wa_data}
 washingtonData.update(new_data2)
 washingtonData_list = list(washingtonData.values())
 
 recent_ny_data = int(input("How many new cases are there in New York? :"))
-date3 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
-new_data3 = {date3: recent_ny_data}
+new_data3 = {date: recent_ny_data}
 newyorkData.update(new_data3)
 newyorkData_list = list(newyorkData.values())
 
 
 recent_ma_data = int(input("How many new cases are there in Massachusetts? :"))
-date4 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
-new_data4 = {date4: recent_ma_data}
+new_data4 = {date: recent_ma_data}
 massachusettsData.update(new_data4)
 massachusettsData_list = list(massachusettsData.values())
 
 recent_fl_data = int(input("How many new cases are there in Florida? :"))
-date5 = input("What is the date today? Please type the date w/o the year in the form APRIL 24 :")
-new_data5 = {date5: recent_fl_data}
+new_data5 = {date: recent_fl_data}
 floridaData.update(new_data5)
 floridaData_list = list(floridaData.values())
 
@@ -87,7 +96,8 @@ sampling['california_sample']= stats.poisson.rvs(loc=min(rona_data_state['CA']),
 sampling['washington_sample']= stats.poisson.rvs(loc=min(rona_data_state['WA']),mu=sum(rona_data_state['WA'])/len(rona_data_state['WA']), size=len(rona_data_state['WA'])) 
 sampling['massachusetts_sample']= stats.poisson.rvs(loc=min(rona_data_state['MA']),mu=sum(rona_data_state['MA'])/len(rona_data_state['MA']),size=len(rona_data_state['MA'])) 
 sampling['florida_sample']= stats.poisson.rvs(loc=min(rona_data_state['FL']),mu=sum(rona_data_state['FL'])/len(rona_data_state['FL']),size=len(rona_data_state['FL']))
-sampling['newyork_sample']= stats.poisson.rvs(loc=min(rona_data_state['NY']), mu=sum(rona_data_state['NY'])/len(rona_data_state['NY']),size=len(rona_data_state['NY']))
+sampling['new_york_sample']= stats.poisson.rvs(loc=min(rona_data_state['NY']), mu=sum(rona_data_state['NY'])/len(rona_data_state['NY']),size=len(rona_data_state['NY']))
+
 def hypothesisTest():
     state1 = input("Which state would you like to look at? :")
     state2 = input("Which state would you like to compare to? :")
