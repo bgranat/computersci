@@ -88,26 +88,25 @@ sampling['washington_sample']= stats.poisson.rvs(loc=min(rona_data_state['WA']),
 sampling['massachusetts_sample']= stats.poisson.rvs(loc=min(rona_data_state['MA']),mu=sum(rona_data_state['MA'])/len(rona_data_state['MA']),size=len(rona_data_state['MA'])) 
 sampling['florida_sample']= stats.poisson.rvs(loc=min(rona_data_state['FL']),mu=sum(rona_data_state['FL'])/len(rona_data_state['FL']),size=len(rona_data_state['FL']))
 sampling['newyork_sample']= stats.poisson.rvs(loc=min(rona_data_state['NY']), mu=sum(rona_data_state['NY'])/len(rona_data_state['NY']),size=len(rona_data_state['NY']))
-
 def hypothesisTest():
     state1 = input("Which state would you like to look at? :")
     state2 = input("Which state would you like to compare to? :")
-    state1_sample = sampling[f"{state1.lower()}_sample"]
+    state1_sample = sampling[f"{state1.lower().replace(' ','_')}_sample"]
     state2_sample = sampling[f"{state2.lower()}_sample"]
     t_stat, p_value = stats.ttest_ind(state1_sample, state2_sample, equal_var=False)
     if p_value < 0.05:
         print(f"the mean for the state1_sample sample is: ")
         print(sum(state1_sample)/len(state1_sample))
         print(f"the mean for the state2_sample sample is: ")
-        print(sum(state2_sample)/len(sampling[f"{state2.lower()}_sample"]))
+        print(sum(state2_sample)/len(state2_sample))
         print("the pvalue is: ")
         print(p_value)
         print(f"Based on the data, we can conclude that there is a definetly a difference in {state1.lower()}'s coronavirus day-by-day trend when compared to {state2.lower()}.")
     else:
-        print(f"the mean for the {state1.lower()} sample is: ")
-        print(sum(sampling[f"{state1.lower()}_sample"])/len(sampling[f"{state1.lower()}_sample"]))
-        print(f"the mean for the {state2.lower()} sample is: ")
-        print(sum(sampling[f"{state2.lower()}_sample"])/len(sampling[f"{state2.lower()}_sample"]))
+        print(f"the mean for the state1_sample sample is: ")
+        print(sum(state1_sample)/len(state1_sample))
+        print(f"the mean for the state2_sample sample is: ")
+        print(sum(state2_sample)/len(state2_sample))
         print("the pvalue is: ")
         print(p_value)
         print(f"Based on the data, we cannot conclude that there is a significant difference between {state1.lower()}'s day-by-day coronavirus trend and {state2.lower()}'s trend.")
